@@ -2,10 +2,15 @@ package studios.vanish.engine;
 
 import studios.vanish.utility.EventHandler;
 
+
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 public class Button
 {
+	public enum ButtonType
+	{
+		Rectangle, Circle
+	}
 	public Point Location = new Point(0, 0);
 	public Size Size = new Size(130, 25);
 	public String Text = "button";
@@ -13,9 +18,10 @@ public class Button
 	public Color[] BackColor = {Color.Black, Color.Red, Color.Green};
 	public Color[] ForeColor = {Color.White, Color.Green, Color.Red};
 	public EventHandler OnClick = new EventHandler();
+	public ButtonType Type = ButtonType.Rectangle;
 	public boolean Enabled = true;
 	private int state = 0;
-	private Rectangle rect;
+	private Shape bounds;
 	private boolean down = false;
 	Window wnd;
 	public Button(Window wnd, String text)
@@ -48,14 +54,26 @@ public class Button
 	}
 	public void Initialize()
 	{
-		rect = new Rectangle(BackColor[state], Location, Size);
+		int rad = Size.Width;
+		if (Size.Height > Size.Width)
+		{
+			rad = Size.Height;
+		}
+		if (Type == ButtonType.Rectangle)
+		{
+			bounds = new Rectangle(BackColor[state], Location, Size);
+		}
+		else if (Type == ButtonType.Circle)
+		{
+			bounds = new Circle(BackColor[state], Location, rad);
+		}
 	}
 	public void Check(Point MouseLocation, int Button)
 	{
 		if (Enabled == true)
 		{
-			rect = new Rectangle(BackColor[state], Location, Size);
-			if (rect.Intersects(MouseLocation))
+			Initialize();
+			if (bounds.Intersects(MouseLocation))
 			{
 				if (wnd.Mouse[MouseEvent.BUTTON1])
 				{
@@ -82,8 +100,9 @@ public class Button
 	public void Render(GraphicsUnit Graphics)
 	{
 		Size center = Graphics.GetTextSize(Text, TextFont);
-		Point text = new Point((Location.X + (Size.Width) / 2) - (center.Width / 2), (Location.Y + (Size.Height) / 2) - (center.Height / 2));
-		Graphics.FillRectangle(BackColor[state], Location, Size);
+		Initialize();
+		Point text = new Point(bounds.GetShapeCenter().X - (center.Width / 2), bounds.GetShapeCenter().Y - (center.Height / 2));
+		bounds.Render(Graphics);
 		Graphics.DrawString(Text, ForeColor[state], text, TextFont);
 	}
 }

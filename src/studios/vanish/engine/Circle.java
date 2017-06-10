@@ -73,6 +73,18 @@ public class Circle extends Shape
 		}
 		return false;
 	}
+	public boolean Intersects(Point point)
+	{
+		if (Center.distance(point) < Radius)
+		{
+			return true;
+		}
+		return false;
+	}
+	public Point GetShapeCenter()
+	{
+		return Center;
+	}
 	public void Render(GraphicsUnit Graphics)
 	{
 		Graphics.FillEllipse(Color, new Point(Center.X - Radius, Center.Y - Radius), new Size(Radius * 2, Radius * 2));

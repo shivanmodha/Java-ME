@@ -1,12 +1,12 @@
 package studios.vanish.utility;
-public class Spark
+public class Utility
 {
 	public static Object InvokeMethod(Object _object, String _method, Object... _parameters)
 	{
 		Object _return = false;
 		try
 		{			
-			_return = _object.getClass().getMethod(_method, Spark.GetClassType(_parameters)).invoke(_object, _parameters);
+			_return = _object.getClass().getMethod(_method, Utility.GetClassType(_parameters)).invoke(_object, _parameters);
 			if (_return == null)
 			{
 				_return = "success: return type null";

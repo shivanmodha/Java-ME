@@ -24,5 +24,7 @@ public abstract class Shape
 		this.Location = new Point(this.Center.X - (side / 2), this.Center.Y - (side / 2));
 	}
 	public abstract boolean Intersects(Shape shape);
+	public abstract boolean Intersects(Point point);
 	public abstract void Render(GraphicsUnit Graphics);
+	public abstract Point GetShapeCenter();
 }

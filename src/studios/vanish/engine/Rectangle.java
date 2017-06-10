@@ -21,6 +21,10 @@ public class Rectangle extends Shape
 		}
 		return false;
 	}
+	public Point GetShapeCenter()
+	{
+		return Location.add(Size.divide(new Size(2, 2)).toPoint());
+	}
 	public void Render(GraphicsUnit Graphics)
 	{
 		Graphics.FillRectangle(Color, Location, Size);

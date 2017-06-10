@@ -10,6 +10,6 @@ public class Method
 	}
 	public Object Invoke(Object... obj)
 	{
-		return Spark.InvokeMethod(Handle, Name, obj);
+		return Utility.InvokeMethod(Handle, Name, obj);
 	}
 }
