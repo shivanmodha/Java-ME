@@ -1,4 +1,4 @@
-package Engine;
+package studios.vanish.engine;
 public class ColorLinearGradient extends Color
 {
 	public class ColoredPoint

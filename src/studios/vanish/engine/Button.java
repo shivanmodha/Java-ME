@@ -1,7 +1,9 @@
-package Engine;
+package studios.vanish.engine;
+
+import studios.vanish.utility.EventHandler;
+
 import java.awt.Font;
 import java.awt.event.MouseEvent;
-import Spark.EventHandler;
 public class Button
 {
 	public Point Location = new Point(0, 0);

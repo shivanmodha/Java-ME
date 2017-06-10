@@ -1,5 +1,6 @@
-package Engine;
-import Spark.EventHandler;
+package studios.vanish.engine;
+import studios.vanish.utility.EventHandler;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;

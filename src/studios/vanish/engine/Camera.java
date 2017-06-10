@@ -1,4 +1,4 @@
-package Engine;
+package studios.vanish.engine;
 import java.awt.MouseInfo;
 import java.awt.Robot;
 import java.awt.Toolkit;

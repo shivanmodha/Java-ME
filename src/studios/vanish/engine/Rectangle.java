@@ -1,4 +1,4 @@
-package Engine;
+package studios.vanish.engine;
 public class Rectangle extends Shape
 {
 	public Rectangle(Color Color, Point Location, Size Size)

@@ -1,4 +1,4 @@
-package Spark;
+package studios.vanish.utility;
 public class Spark
 {
 	public static Object InvokeMethod(Object _object, String _method, Object... _parameters)

@@ -1,4 +1,4 @@
-package Engine;
+package studios.vanish.engine;
 public class Sphere extends Object3D
 {
 	public Sphere()

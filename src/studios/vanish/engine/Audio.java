@@ -1,4 +1,4 @@
-package Engine;
+package studios.vanish.engine;
 import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;

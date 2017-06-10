@@ -1,4 +1,4 @@
-package Engine;
+package studios.vanish.engine;
 public abstract class Shape
 {
 	public Point Location;

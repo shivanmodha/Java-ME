@@ -1,4 +1,4 @@
-package Spark;
+package studios.vanish.utility;
 public class Method
 {
 	private String Name;

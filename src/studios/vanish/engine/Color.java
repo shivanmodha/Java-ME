@@ -1,4 +1,4 @@
-package Engine;
+package studios.vanish.engine;
 public class Color
 {
 	public int R;
