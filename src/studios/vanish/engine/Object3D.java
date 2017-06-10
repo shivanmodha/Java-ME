@@ -90,7 +90,7 @@ public class Object3D
 				facesTrans.add(idx, faceTrans);
 			}
 		}
-		D3D_renderStructure parse = new D3D_renderStructure(faces, facesTrans, vertexColor, new ArrayList<Vertex>(), new ArrayList<Vertex>(), new ArrayList<Vertex>(), new ArrayList<Vertex>(), new ArrayList<Vertex>());
+		RenderStructure parse = new RenderStructure(faces, facesTrans, vertexColor, new ArrayList<Vertex>(), new ArrayList<Vertex>(), new ArrayList<Vertex>(), new ArrayList<Vertex>(), new ArrayList<Vertex>());
 		for (int i = 0; i < faces.size(); i++)
 		{
 			parse.Location.add(Location);

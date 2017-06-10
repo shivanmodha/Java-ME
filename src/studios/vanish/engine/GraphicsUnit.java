@@ -14,7 +14,7 @@ public class GraphicsUnit
 	public Size WindowSize;
 	public Size Resolution;
 	public FillMode Fill;
-	private D3D_renderStructure Queue = new D3D_renderStructure();
+	private RenderStructure Queue = new RenderStructure();
 	private ArrayList<Light> Lights = new ArrayList<Light>();
 	private ArrayList<Double> renderZ = new ArrayList<Double>();
 	private boolean intersectionPoints = false;
@@ -333,7 +333,7 @@ public class GraphicsUnit
 		}
 		return d3d_vertices;
 	}
-	public void D3D_Queue_Add(D3D_renderStructure add)
+	public void D3D_Queue_Add(RenderStructure add)
 	{
 		ArrayList<Double> vertexZTemp = new ArrayList<Double>();
 		for (int f = 0; f < add.facesTransformed.size(); f++)
@@ -364,7 +364,7 @@ public class GraphicsUnit
 	{
 		Lights.add(add);
 	}
-	private D3D_renderStructure faceIntersection(D3D_renderStructure parse)
+	private RenderStructure faceIntersection(RenderStructure parse)
 	{
 		ArrayList<Double> vertexZTemp = new ArrayList<Double>();		
 		ArrayList<Vertex[]> renderFaces = new ArrayList<Vertex[]>();
@@ -528,7 +528,7 @@ public class GraphicsUnit
 		}
 		if (renderFaces.size() != 0)
 		{
-			return new D3D_renderStructure(renderFaces, renderFacesTrans, renderColor, loc, rot, sca, rev, revRad);			
+			return new RenderStructure(renderFaces, renderFacesTrans, renderColor, loc, rot, sca, rev, revRad);			
 		}
 		else
 		{
