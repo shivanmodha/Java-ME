@@ -41,6 +41,7 @@ public class Window
 	public EventHandler OnMouseLeave = new EventHandler();
 	public EventHandler OnMouseClick = new EventHandler();
 	public EventHandler OnMouseDrag = new EventHandler();
+	public EventHandler OnMouseWheel = new EventHandler();
 	public EventHandler OnShow = new EventHandler();
 	public EventHandler OnClose = new EventHandler();
 	public EventHandler OnFocus = new EventHandler();
@@ -208,6 +209,13 @@ public class Window
 				Mouse[e.getButton()] = false;
 				OnMouseUp.InvokeAll(new Point(e.getX(), e.getY()), e.getButton());				
 			}			
+		});
+		container.addMouseWheelListener(new MouseWheelListener()
+		{
+			public void mouseWheelMoved(MouseWheelEvent e)
+			{
+				OnMouseWheel.InvokeAll(e.getScrollAmount() * e.getWheelRotation());
+			}
 		});
 		container.addMouseMotionListener(new MouseMotionListener()
 		{
