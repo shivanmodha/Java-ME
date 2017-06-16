@@ -25,6 +25,10 @@ public class Button
 	private boolean down = false;
 	public FillMode FillMode = studios.vanish.engine.FillMode.Solid;
 	Window wnd;
+	public int GetState()
+	{
+		return state;
+	}
 	public Button(Window wnd, String text)
 	{
 		wnd.OnMouseMove.Add(this, "Check");
