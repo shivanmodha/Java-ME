@@ -92,6 +92,7 @@ public class Button
 					if (down == true)
 					{
 						OnClick.InvokeAll(MouseLocation, Button);
+						OnClick.InvokeAll(this, MouseLocation, Button);
 						down = false;
 					}
 				}
@@ -107,7 +108,7 @@ public class Button
 	{
 		Size center = Graphics.GetTextSize(Text, TextFont);
 		Initialize();
-		Point text = new Point(bounds.GetShapeCenter().X - (center.Width / 2), bounds.GetShapeCenter().Y - (center.Height / 2));
+		Point text = new Point(bounds.GetShapeCenter().X - (center.Width / 2) - 1, bounds.GetShapeCenter().Y - (center.Height / 2) - 2);
 		bounds.Render(Graphics);
 		Graphics.DrawString(Text, ForeColor[state], text, TextFont);
 	}
