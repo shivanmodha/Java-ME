@@ -390,4 +390,21 @@ public class Window
 	{
 		return new GraphicsUnit(null, FieldOfView, Size, Resolution, FillMode, Camera, CalculateIntersections, RenderLights);
 	}
+	public void SetSize(Size _size)
+	{
+		Size = new Size(_size.Width, _size.Height);
+		window.setSize(_size.Width, _size.Height);
+	}
+	public void SetMinimumSize(Size _size)
+	{
+		window.setMinimumSize(new Dimension(_size.Width, _size.Height));
+	}
+	public void SetTitle(String _title)
+	{
+		window.setTitle(_title);
+	}
+	public JFrame GetInnerWindow()
+	{
+		return window;
+	}
 }
