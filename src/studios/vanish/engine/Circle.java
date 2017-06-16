@@ -87,6 +87,13 @@ public class Circle extends Shape
 	}
 	public void Render(GraphicsUnit Graphics)
 	{
-		Graphics.FillEllipse(Color, new Point(Center.X - Radius, Center.Y - Radius), new Size(Radius * 2, Radius * 2));
+		if (FillMode == studios.vanish.engine.FillMode.Solid)
+		{
+			Graphics.FillEllipse(Color, new Point(Center.X - Radius, Center.Y - Radius), new Size(Radius * 2, Radius * 2));
+		}
+		else
+		{
+			Graphics.DrawEllipse(Color, new Point(Center.X - Radius, Center.Y - Radius), new Size(Radius * 2, Radius * 2));			
+		}
 	}
 }

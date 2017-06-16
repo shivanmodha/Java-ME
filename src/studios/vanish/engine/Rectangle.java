@@ -27,6 +27,13 @@ public class Rectangle extends Shape
 	}
 	public void Render(GraphicsUnit Graphics)
 	{
-		Graphics.FillRectangle(Color, Location, Size);
+		if (FillMode == studios.vanish.engine.FillMode.Solid)
+		{
+			Graphics.FillRectangle(Color, Location, Size);
+		}
+		else
+		{
+			Graphics.DrawRectangle(Color, Location, Size);
+		}
 	}
 }

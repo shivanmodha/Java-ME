@@ -23,6 +23,7 @@ public class Button
 	private int state = 0;
 	private Shape bounds;
 	private boolean down = false;
+	public FillMode FillMode = studios.vanish.engine.FillMode.Solid;
 	Window wnd;
 	public Button(Window wnd, String text)
 	{
@@ -67,6 +68,7 @@ public class Button
 		{
 			bounds = new Circle(BackColor[state], Location, rad);
 		}
+		bounds.FillMode = FillMode;
 	}
 	public void Check(Point MouseLocation, int Button)
 	{

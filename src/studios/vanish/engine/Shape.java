@@ -6,6 +6,7 @@ public abstract class Shape
 	public Size Size;
 	public int Radius;
 	public Color Color;
+	public FillMode FillMode = studios.vanish.engine.FillMode.Solid;
 	public void Initialize(Color Color, Point Location, Size Size)
 	{
 		this.Color = Color;

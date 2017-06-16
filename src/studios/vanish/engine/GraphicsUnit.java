@@ -193,6 +193,22 @@ public class GraphicsUnit
 		}
 		return position;
 	}
+	public Vertex D3D_ToProjection(Vertex vertex, Size wndSize, Vertex offset)
+	{
+		Size center = Resolution.half();
+		double factor = FieldOfView / vertex.Z;
+		factor = Math.abs(factor);
+		Vertex position = new Vertex(vertex.X * factor + center.Width, vertex.Y * -factor + center.Height, vertex.Z);
+		position.X = (position.X * wndSize.Width) / Resolution.Width;
+		position.Y = (position.Y * wndSize.Height) / Resolution.Height;
+		if (vertex.Z < 0)
+		{
+			position.X *= center.Width / 2;
+			position.Y *= center.Height / 2;
+		}
+		position = position.add(offset);
+		return position;
+	}
 	public static Vertex D3D_FromProjection(Point point, Size resolution, Size windowSize, double FieldOfView, double CameraZ)
 	{
 		Vertex position = new Vertex((point.X * resolution.Width) / windowSize.Width, (point.Y * resolution.Height) / windowSize.Height, CameraZ);
