@@ -23,7 +23,7 @@ This API utilizes a Utility library (found in `studios.vanish.utility`) that all
 The `EventHandler` class holds multiple `Method`s, and allows one to invoke all of them at the same time through the `InvokeAll(Object... obj)` method. Throughout the Matrix Graphics Engine, `EventHandler`s are created so that the end user can specify what to do when a specific event occurs. An example of such is the `OnPaint` method. When it is time to draw objects to the screen, every method in `OnPaint` are invoked, allowing the user to render their own objects.
 ## GraphicsUnit
 All of Java-ME's rendering capabilities are handled in the `GraphicsUnit` class. A `GraphicsUnit` object is automatically created when using the `Window` class, and is sent for use through the OnPaint event. However, you can always create a `GraphicsUnit` object, in case you want to use the 3D capabilities without initializing a `Window`.
-```
+```java
 GraphicsUnit Graphics = new GraphicsUnit(Graphic, FieldOfView, Size, Resolution, FillMode, Camera, CalculateIntersections, RenderLights);
 ```
 - `Graphic`: The underlining graphics used, a `Graphics2D` object in Java Swing.
@@ -36,34 +36,34 @@ GraphicsUnit Graphics = new GraphicsUnit(Graphic, FieldOfView, Size, Resolution,
 - `RenderLights`: Specify whether to enable light based rendering, or simply render based on object color.
 
 Many of these parameters impact the way the 3D components are drawn. `GraphicsUnit` has the capability to perform many 3D calculations that are useful to rendering, but are sometimes useful when updating a scene. Therefore, a useful `GetNullGraphics` method can be found in the `Window` class, which creates a `GraphicsUnit` object without the rendering capabilities.
-```
+```java
 GraphicsUnit Graphics = window.GetNullGraphicsUnit();
 ```
 ## Getting Started
 Instead of manually creating a `JFrame` window, Java-ME handles it through the `Window` class. Thus, you can use Java-ME as the underlining framework for your application, as everything needed to render to the screen is already handled.
-```
+```java
 Window window = new Window("Java Matrix Engine", new Size(800, 600), true); //specify the name, size, and border style
 ```
 The next lines initialize the graphical components that the window class uses by specifying the framerate, and shows the window. `Initialize3D` only needs to be called if you are going to render 3D components.
-```
+```java
 window.Initialize(60); //specify the framerate
 window.Initialize3D(new Size(800, 600), 1024, FillMode.Solid, false, false); //specify resolution, field of view, fill mode, calculate intersections (=false), automatically render all 3D objects
 window.Show();
 ```
-```
+```java
 window.Initialize3D();
 ```
 To draw to the screen, you need to handle the OnPaint event.
-```
+```java
 window.OnPaint.Add(this, "Render"); //specify the object, and the function's name
 ```
 Don't forget to create the coinciding method. Remember that the method name must match the name you added to the `OnPaint` event handler. The method must also be public so that it can be accessed externally, and the parameters must correctly match the ones that the OnPaint method sends. In this case, `OnPaint` only sends one parameter.
-```
+```java
 public void Render(GraphicsUnit Graphics) //The Render method that will be called
 ```
 ## Sample Cube Application
 Here is a sample rotating cube application.
-```
+```java
 public class Program
 {
     Object3D cube = new Object3D();
@@ -118,13 +118,13 @@ Unfortunately, I never planned on releasing this when I first embarked on making
 Java-ME comes with a list of predefined colors. All of these colors were taken from [Rapid Tables](http://www.rapidtables.com/web/color/RGB_Color.htm).
 ## Color Object
 You can create your own colors
-```
+```java
 Color color = new Color(255, 255, 255); //R, G, B
 Color color = new Color(255, 255, 255, 255); //R, G, B, A
 ```
 ## ColorLinearGradient
 Instead of a basic solid color, this color type represents a linear gradient. You can send `ColorLinearGradient` colors to any render method, and it will be draw as a gradient. To create a `ColorLinearGradient`, you must specify a couple of things.
-```
+```java
 ColorLinearGradient col = new ColorLinearGradient(2); //How many times are you going to change the color?
 col.Set(0, new Point(0, 0), Color.Black); //Where is the first color, and what is that color?
 col.Set(1, new Point(800, 500), Color.Blue); //Where is the second color, and what is that color?
@@ -156,13 +156,13 @@ Java-ME comes with an abstract `Shape` class, that specifies an `Intersects` and
 - Circle
 
 You can render a rectangle by using the rectangle class.
-```
+```java
 Rectangle rectangle;
 rectangle.Initialize(Color.Black, new Point(0, 0), new Size(500, 500));
 rectangle.Render(Graphics);
 ```
 You can do hit-detection by calling the `Intersects` method.
-```
+```java
 if (shape1.Intersects(shape2))
 {
     //do something special, because the objects have collided
@@ -178,28 +178,28 @@ All of the 3D methods in `GraphicsUnit` have the `D3D_` identifier before them. 
 To render a 3D object effectively, use the `Object3D` class. This will ensure that any object rendered  exactly as specified and that they will be rendered according to their Z axis, as this will automatically implement a Z Buffer. Transformations will also be self-contained, easy to manage, and fast. To create an `Object3D`, you need to specify the object's faces, and colors.
 
 When creating an object, you need to specify every vertex that will be used. Identify these vertices within the vertices array object.
-```
+```java
 object.Vertices = new Vertex[]
 {
     //Include every single vertex here
 };
 ```
 Next, you define a face through the Indices array object. An `Index` object takes as many integer values as it takes to define a face. It takes at minimum 4 vertices to define a face. Each integer value in `Index` corresponds to the index value of the vertex.
-```
+```java
 object.Indices = new Index[]
 {
     //Include every face here
 };
 ``` 
 Finally, you need to define the color for each face. Note that the following condition must be met: `object.Colors.length = object.Indices.length`.
-```
+```java
 object.Colors = new Color[]
 {
     //Include the colors of each face here
 };
 ```
 The following code will generate a 3D Cube.
-```
+```java
 Object3D object = new Object3D();
 object.Vertices = new Vertex[]
 {
@@ -220,15 +220,15 @@ obj1.Colors = new Color[]
 };
 ```
 Finally, render the object by using the render method.
-```
+```java
 object.Render(Graphics); //where Graphics is a GraphicsUnit object
 ```
 If in `Initialize3D`, you disable AutomaticRender, you need to manually render the 3D objects.
-```
+```java
 Graphics.Render(); //where Graphics is a GraphicsUnit object
 ```
 Each `Object3D` object comes with variables that specify transformations.
-```
+```java
 object.Location = new Vertex(0, 0, 10); //translates the object
 object.Rotation = new Vertex(10, 10, 10); //rotates the object
 object.Scale = new Vertex(1, 1, 1); //scales the object. Values between 0 and 1 make it smaller, while values greater than 1 make it larger
@@ -236,7 +236,7 @@ object.Revolution = new Vertex(10, 10, 10); //revolves the object around its loc
 object.RevolutionRadius = new Vertex(0, 4, 0); //specifies how to revolve the object
 ```
 Java-ME comes with a special `Object3D` class called `Sphere`, which automatically generates the vertices and indices for a sphere or cylinder. 
-```
+```java
 Object3D sphere = new Sphere(10, 10, false, Color.White); //generate a sphere with 10 by 10 definition
 Object3D cylinder = new Sphere(10, 10, true, Color.White); //generate a cylinder with 10 by 10 definition
 ```
