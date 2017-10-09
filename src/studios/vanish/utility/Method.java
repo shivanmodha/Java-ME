@@ -1,15 +1,15 @@
 package studios.vanish.utility;
 public class Method
 {
-	private String Name;
-	private Object Handle;
-	public Method(Object _object, String _name)
-	{
-		Handle = _object;
-		Name = _name;
-	}
-	public Object Invoke(Object... obj)
-	{
-		return Utility.InvokeMethod(Handle, Name, obj);
-	}
+    private String Name;
+    private Object Handle;
+    public Method(Object _object, String _name)
+    {
+        Handle = _object;
+        Name = _name;
+    }
+    public Object Invoke(Object... obj)
+    {
+        return Utility.InvokeMethod(Handle, Name, obj);
+    }
 }
